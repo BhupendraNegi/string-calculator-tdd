@@ -57,6 +57,8 @@ RSpec.describe StringCalculator do
 
     it 'supports custom delimiters' do
         expect(StringCalculator.add("//;\n1;2")).to eq(3)
+        expect(StringCalculator.add("//;\n1;2")).to eq(3)
+        expect(StringCalculator.add("//;\n1.2")).to eq(1)
     end
 
   end
