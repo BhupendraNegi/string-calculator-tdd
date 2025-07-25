@@ -13,7 +13,9 @@ class StringCalculator
         delimiters = [custom_delimiter]
       end
 
-      numbers = numbers_string.split(Regexp.union(delimiters)).map(&:to_i)
+      numbers = numbers_string.split(Regexp.union(delimiters))
+                              .map(&:to_i)
+                              .reject { |n| n > 1000 }
       
       negatives = numbers.select { |n| n < 0 }
       raise "negative numbers not allowed: #{negatives.join(', ')}" if negatives.any?
