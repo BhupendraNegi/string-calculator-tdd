@@ -31,12 +31,6 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("1,3")).to eq(4)
     end
 
-    it 'returns the sum of two comma separated negtive numbers' do
-        expect(StringCalculator.add("-1,2")).to eq(1)
-        expect(StringCalculator.add("-1,-3")).to eq(-4)
-        expect(StringCalculator.add("1,-3")).to eq(-2)
-    end
-
     it 'returns the sum of two comma separated numbers with spaces' do
         expect(StringCalculator.add("1,2 ")).to eq(3)
         expect(StringCalculator.add(" 1,2")).to eq(3)
@@ -45,8 +39,8 @@ RSpec.describe StringCalculator do
 
     it 'returns the sum of multiple comma separated numbers' do
         expect(StringCalculator.add("1,2, 3 ")).to eq(6)
-        expect(StringCalculator.add(" -1,2, 5")).to eq(6)
-        expect(StringCalculator.add(" 1 , 2, -9, 0, 6")).to eq(0)
+        expect(StringCalculator.add(" 1,2, 5")).to eq(8)
+        expect(StringCalculator.add(" 1 , 2, 9, 0, 6")).to eq(18)
     end
 
     it 'returns the sum with newlines also as delimiters' do
@@ -59,6 +53,16 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("//;\n1;2")).to eq(3)
         expect(StringCalculator.add("//;\n1;2")).to eq(3)
         expect(StringCalculator.add("//;\n1.2")).to eq(1)
+    end
+
+    it 'raises an exception when negative numbers are included' do
+        expect {
+          StringCalculator.add("1,-2")
+        }.to raise_error("negative numbers not allowed: -2")
+
+        expect {
+            StringCalculator.add("1,-2,-5,3")
+        }.to raise_error("negative numbers not allowed: -2, -5")
     end
 
   end
