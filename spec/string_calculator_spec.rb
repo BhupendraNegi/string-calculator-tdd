@@ -52,7 +52,7 @@ RSpec.describe StringCalculator do
     it 'returns the sum with newlines also as delimiters' do
         expect(StringCalculator.add("1\n2,3")).to eq(6)
         expect(StringCalculator.add("1\n2\n3")).to eq(6)
-        expect(StringCalculator.add("1\n2\n\n3")).to eq(0)
+        expect(StringCalculator.add("1\n2\n\n3")).to eq(6)
     end
 
   end

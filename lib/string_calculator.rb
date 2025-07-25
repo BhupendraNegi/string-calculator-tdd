@@ -4,11 +4,6 @@ class StringCalculator
 
       return 0 if numbers.strip.empty?
 
-      if numbers.include?(',')
-        numbers.split(/,|\n/).map(&:to_i).sum
-      else
-        numbers.to_i
-      end
-
+      numbers.split(/,|\n/).map(&:to_i).sum
     end
 end
