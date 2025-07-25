@@ -4,5 +4,7 @@ class StringCalculator
 
       return 0 if numbers.strip.empty?
 
+      return numbers.to_i
+
     end
 end
