@@ -69,7 +69,11 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("2,1001")).to eq(2)
         expect(StringCalculator.add("1234,5,10000")).to eq(5)
         expect(StringCalculator.add("1234,5,9,10000")).to eq(14)
+    end
 
+    it 'supports delimiters of any length using format “//[delimiter]\n”' do
+        expect(StringCalculator.add("//[***]\n1***2***3")).to eq(6)
+        expect(StringCalculator.add("//[....]\n1.... 2 .... 3")).to eq(6)
     end
 
   end

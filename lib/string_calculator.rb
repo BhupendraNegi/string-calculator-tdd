@@ -8,9 +8,14 @@ class StringCalculator
 
       if numbers_string.start_with?("//")
         parts = numbers_string.split("\n", 2) # Split in two parts
-        custom_delimiter = parts[0][2]
+        custom_delimiter = parts[0]
         numbers_string = parts[1]
-        delimiters = [custom_delimiter]
+
+        delimiters =  if custom_delimiter.match?(/\[.*\]/)
+                        custom_delimiter.scan(/\[(.*?)\]/).flatten # Checks for delimiters inside []
+                      else
+                        [custom_delimiter[2]]
+                      end
       end
 
       numbers = numbers_string.split(Regexp.union(delimiters))
