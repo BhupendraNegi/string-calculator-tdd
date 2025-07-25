@@ -1,9 +1,11 @@
 class StringCalculator
     def self.add(numbers)
-      return nil if numbers.nil?
+      return if numbers.nil?
 
       return 0 if numbers.strip.empty?
 
-      numbers.split(/,|\n/).map(&:to_i).sum
+      delimiter = [",", "\n"]
+
+      numbers.split(Regexp.union(delimiter)).map(&:to_i).sum
     end
 end
