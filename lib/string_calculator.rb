@@ -5,7 +5,7 @@ class StringCalculator
       return 0 if numbers.strip.empty?
 
       if numbers.include?(',')
-        numbers.split(',').map(&:to_i).sum
+        numbers.split(/,|\n/).map(&:to_i).sum
       else
         numbers.to_i
       end
